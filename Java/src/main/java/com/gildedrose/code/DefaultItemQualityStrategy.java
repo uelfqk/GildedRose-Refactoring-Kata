@@ -4,7 +4,7 @@ import com.gildedrose.Item;
 
 public class DefaultItemQualityStrategy implements QualityStrategy {
 
-    private static final int MINUS_QUALITY_DOUBLE = 2;
+    private static final int MINUS_DOUBLE_QUALITY = 2;
 
     @Override
     public boolean isSupport(String name) {
@@ -15,28 +15,17 @@ public class DefaultItemQualityStrategy implements QualityStrategy {
 
     @Override
     public void update(Item item) {
-        if(!isGreateThenZeroQuality(item.quality)) {
-            item.quality = ZERO;
-            return;
-        }
-
-        minusSellIn(item);
         minusQuality(item);
+        minusSellIn(item);
+        validate(item);
     }
 
-    @Override
-    public void minusQuality(Item item) {
+    private void minusQuality(Item item) {
         if(!isPossibleSell(item.sellIn)) {
-            item.quality -= DEFAULT_MINUS_VALUE;
+            item.quality -= MINUS_DOUBLE_QUALITY;
             return;
         }
 
-        item.quality -= MINUS_QUALITY_DOUBLE;
-
-        QualityStrategy.super.minusQuality(item);
-    }
-
-    private void minusSellIn(Item item) {
-        item.sellIn -= DEFAULT_MINUS_VALUE;
+        item.quality -= INCREASE_DEFAULT_QUALITY;
     }
 }

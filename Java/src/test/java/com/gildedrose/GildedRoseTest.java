@@ -57,6 +57,10 @@ class GildedRoseTest {
         Assertions.assertEquals(0, item.quality);
     }
 
+    // TODO 테스트 깨짐
+    //      사유 : quality 가 0 이하가 될때 0 으로 값을 변경하는 코드 추가
+    //      결과 : 테스트 코드 변경
+    //            Assertions.assertEquals(-1, item.quality); -> Assertions.assertEquals(0, item.quality);
     @Test
     @DisplayName(value = "가치 음수 안됨 - 가치 변경 실패 테스트")
     void 가치_음수_안됨_가치_변경_실패_테스트() {
@@ -67,7 +71,8 @@ class GildedRoseTest {
         Item item = items[0];
 
         Assertions.assertEquals(0, item.sellIn);
-        Assertions.assertEquals(-1, item.quality);
+//        Assertions.assertEquals(-1, item.quality);
+        Assertions.assertEquals(0, item.quality);
     }
 
     @Test
@@ -109,6 +114,10 @@ class GildedRoseTest {
         Assertions.assertEquals(50, item.quality);
     }
 
+    // TODO 테스트 깨짐
+    //      사유 : quality 가 50 초과 될때 50 으로 값을 변경하는 코드 추가
+    //      결과 : 테스트 코드 변경
+    //            Assertions.assertEquals(51, item.quality); -> Assertions.assertEquals(50, item.quality);
     @Test
     @DisplayName(value = "가치 51 넣음 - 가치 변경 테스트")
     void 가치_51_넣음_가치_변경_테스트() {
@@ -119,7 +128,8 @@ class GildedRoseTest {
         Item item = items[0];
 
         Assertions.assertEquals(0, item.sellIn);
-        Assertions.assertEquals(51, item.quality);
+//        Assertions.assertEquals(51, item.quality);
+        Assertions.assertEquals(50, item.quality);
     }
 
     @Test

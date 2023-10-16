@@ -6,7 +6,7 @@ public interface QualityStrategy {
 
     int ZERO = 0;
 
-    int DEFAULT_MINUS_VALUE = 1;
+    int INCREASE_DEFAULT_QUALITY = 1;
 
     int MAX_QUALITY = 50;
 
@@ -18,13 +18,26 @@ public interface QualityStrategy {
         return quality > ZERO;
     }
 
+    default boolean isMaximumQuality(int quality) {
+        return quality > MAX_QUALITY;
+    }
+
     default boolean isPossibleSell(int sellIn) {
         return sellIn > ZERO;
     }
 
-    default void minusQuality(Item item) {
-        if(item.quality == MAX_QUALITY) {
+    default void validate(Item item) {
+        if(!isGreateThenZeroQuality(item.quality)) {
+            item.quality = ZERO;
+            return;
+        }
+
+        if(isMaximumQuality(item.quality)) {
             item.quality = MAX_QUALITY;
         }
+    }
+
+    default void minusSellIn(Item item) {
+        item.sellIn -= INCREASE_DEFAULT_QUALITY;
     }
 }
