@@ -1,6 +1,11 @@
-package com.gildedrose;
+package com.gildedrose.v1;
 
-import com.gildedrose.code.*;
+import com.gildedrose.v1.Item;
+import com.gildedrose.v1.QualityStrategyFactory;
+import com.gildedrose.v1.strategy.AgedBrieQualityStrategy;
+import com.gildedrose.v1.strategy.ConcertQualityStrategy;
+import com.gildedrose.v1.strategy.DefaultItemQualityStrategy;
+import com.gildedrose.v1.strategy.SulfurasQualityStrategy;
 
 import java.util.Arrays;
 

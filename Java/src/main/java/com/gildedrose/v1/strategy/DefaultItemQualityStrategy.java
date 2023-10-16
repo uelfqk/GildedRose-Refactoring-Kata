@@ -1,10 +1,10 @@
-package com.gildedrose.code;
+package com.gildedrose.v1.strategy;
 
-import com.gildedrose.Item;
+import com.gildedrose.v1.Item;
 
 public class DefaultItemQualityStrategy implements QualityStrategy {
 
-    private static final int MINUS_DOUBLE_QUALITY = 2;
+    private static final int DECREASE_DOUBLE_QUALITY = 2;
 
     @Override
     public boolean isSupport(String name) {
@@ -22,7 +22,7 @@ public class DefaultItemQualityStrategy implements QualityStrategy {
 
     private void minusQuality(Item item) {
         if(!isPossibleSell(item.sellIn)) {
-            item.quality -= MINUS_DOUBLE_QUALITY;
+            item.quality -= DECREASE_DOUBLE_QUALITY;
             return;
         }
 

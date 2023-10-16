@@ -1,8 +1,6 @@
-package com.gildedrose.code;
+package com.gildedrose.v2.provider;
 
-import com.gildedrose.Item;
-
-public class ConcertQualityStrategy implements QualityStrategy {
+public class ConcertUpdateProvider implements UpdateProvider {
 
     private static final int BEFORE_SELL_IN_ELEVEN_DAYS = 11;
 
@@ -12,25 +10,17 @@ public class ConcertQualityStrategy implements QualityStrategy {
 
     private static final int PLUS_TRIPLE_QUALITY = 3;
 
-    @Override
-    public boolean isSupport(String name) {
-        return "Backstage passes to a TAFKAL80ETC concert".equals(name);
-    }
+    private static final int INCREASE_DEFAULT_QUALITY = 1;
+
+    private static final int INCREASE_SELL_IN = 1;
 
     @Override
-    public void update(Item item) {
-        plusQuality(item);
-        minusSellIn(item);
-        validate(item);
-    }
-
-    private void plusQuality(Item item) {
-        if(!isPossibleSell(item.sellIn)) {
-            item.quality = 0;
-            return;
+    public int generateQuality(int sellIn) {
+        if(!isPossibleSell(sellIn)) {
+            return ZERO;
         }
 
-        item.quality += getPlusQuality(item.sellIn);
+        return getPlusQuality(sellIn);
     }
 
     private int getPlusQuality(int sellIn) {
@@ -51,5 +41,10 @@ public class ConcertQualityStrategy implements QualityStrategy {
 
     private boolean isBeforeSellInElevenDays(int sellIn) {
         return sellIn < BEFORE_SELL_IN_ELEVEN_DAYS && sellIn > BEFORE_SELL_IN_SIX_DAYS;
+    }
+
+    @Override
+    public int getSellIn() {
+        return INCREASE_SELL_IN;
     }
 }

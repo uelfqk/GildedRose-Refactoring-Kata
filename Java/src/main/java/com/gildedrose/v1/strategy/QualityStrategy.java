@@ -1,6 +1,6 @@
-package com.gildedrose.code;
+package com.gildedrose.v1.strategy;
 
-import com.gildedrose.Item;
+import com.gildedrose.v1.Item;
 
 public interface QualityStrategy {
 

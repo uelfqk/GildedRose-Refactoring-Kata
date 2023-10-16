@@ -1,4 +1,7 @@
-package com.gildedrose.code;
+package com.gildedrose.v1;
+
+import com.gildedrose.v1.strategy.DefaultItemQualityStrategy;
+import com.gildedrose.v1.strategy.QualityStrategy;
 
 import java.util.List;
 
